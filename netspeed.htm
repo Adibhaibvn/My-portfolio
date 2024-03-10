@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Speed Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Network Speed Test</h1>
+  <button id="test-button">Test Speed</button>
+  <p id="result"></p>
+
+  <script>
+    const testButton = document.getElementById('test-button');
+    const resultSpan = document.getElementById('result');
+
+    function measureSpeed() {
+      const startTime = Date.now();
+      const fileSize = 1024 * 1024; // 1MB file size for testing
+
+      const downloadElement = new Image();
+      downloadElement.onload = function() {
+        const endTime = Date.now();
+        const duration = (endTime - startTime) / 1000; // time in seconds
+
+        const bps = (fileSize / duration) * 8; // bits per second
+        const kbps = bps / 1024; // kilobits per second
+        const mbps = kbps / 1024; // megabits per second
+
+        resultSpan.textContent = `Download speed: ${mbps.toFixed(2)} Mbps`;
+      };
+
+      // Add a random parameter to avoid caching
+      downloadElement.src = "speedtest.jpg?" + startTime;
+    }
+
+    testButton.addEventListener('click', measureSpeed);
+  </script>
+</body>
+</html>

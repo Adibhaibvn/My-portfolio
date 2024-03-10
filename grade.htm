@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Grade Calculator</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("grade.jpg");
+    }
+    form {
+        max-width: 300px;
+        margin: 0 auto;
+        padding:15px;
+        border: solid 10px #D5EEFF;
+        color:#FA7D09;
+    }
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        background-color: #FD2E2E;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    h1{
+        font-size: xx-large;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+        
+        color:#F9E75E;
+    }
+    #result{
+        color:#FAC55B;
+        text-align: center;
+        font-size: x-large;
+        padding:15px;
+    }
+</style>
+</head>
+<body>
+    <h1>Grade Calculator</h1>
+
+<form id="gradeForm" onsubmit="calculateGrade(); return false;">
+    <label for="phy">Enter your Physics marks:</label>
+    <input type="number" id="phy" name="phy" required><br>
+
+    <label for="chem">Enter your Chemistry marks:</label>
+    <input type="number" id="chem" name="chem" required>
+    <br>
+
+    <label for="math">Enter your Math marks:</label>
+    <input type="number" id="math" name="math" required>
+    <br>
+
+    <label for="eng">Enter your English marks:</label>
+    <input type="number" id="eng" name="eng" required>
+    <br>
+
+    <input type="submit" value="Calculate Grade">
+</form>
+
+<div id="result"></div>
+
+<script>
+    function calculateGrade() {
+        var phyGrade = parseFloat(document.getElementById("phy").value);
+        var chemGrade = parseFloat(document.getElementById("chem").value);
+        var mathGrade = parseFloat(document.getElementById("math").value);
+        var engGrade = parseFloat(document.getElementById("math").value);
+        
+        var totalGrade =(phyGrade+chemGrade+mathGrade+engGrade)/4;
+        var gradeText = "total grade is " + totalGrade.toFixed(2) + ". ";
+        
+        if (totalGrade >= 90) {
+            gradeText += "You got an A.";
+        } else if (totalGrade >= 80) {
+            gradeText += "You got a B.";
+        } else if (totalGrade >= 70) {
+            gradeText += "You got a C.";
+        } else if (totalGrade >= 60) {
+            gradeText += "You got a D.";
+        } else if(totalGrade>=36) {
+            gradeText += "You got an E.";
+        }
+        else{
+            gradeText+="You failed this Exam 😔😔... but, Failure won't stop you in achieving your dreams👍👍 "
+        }
+
+        document.getElementById("result").innerText = gradeText;
+    }
+</script>
+
+</body>
+</html>

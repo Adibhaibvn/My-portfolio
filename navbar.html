@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sliding Navigation Bar</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      transition: all 0.5s ease;
+      z-index: 10; /* Ensure navbar stays above content */
+    }
+
+    .navbar.hidden {
+      top: -100px; /* Slide navbar up when hidden */
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 5px 10px;
+    }
+
+    .main-content {
+      padding-top: 120px; /* Add some space after navbar */
+      min-height: 100vh; /* Ensure content fills the viewport */
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <main class="main-content">
+    <h1>Welcome!</h1>
+    <p>This is some content that will be displayed on the page. Scroll down to see the navigation bar slide down.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+  </main>
+
+  <script>
+    const navbar = document.querySelector('.navbar');
+    const prevScrollPos = window.pageYOffset; // Store previous scroll position
+
+    window.addEventListener('scroll', () => {
+      const currentScrollPos = window.pageYOffset;
+
+      // Check for scroll down (positive value) or scroll up (negative value)
+      if (currentScrollPos > prevScrollPos) {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+
+      prevScrollPos = currentScrollPos; // Update previous scroll position
+    });
+  </script>
+</body>
+</html>
