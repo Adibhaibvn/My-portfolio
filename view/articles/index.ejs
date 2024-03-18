@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@400..700&family=Fuzzy+Bubbles:wght@400;700&family=Indie+Flower&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Madimi+One&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Permanent+Marker&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Indie+Flower&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Madimi+One&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Permanent+Marker&family=Rubik+Gemstones&display=swap" rel="stylesheet">
+    <title> TechWhirl  </title>
+    <style>
+        body{
+            align-items: center;
+            font-family: "Madimi One", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            background-color: #C1F8CF;
+            text-wrap: stable;
+            padding: 7px;
+            font-size: 1rem;
+}
+    #title{
+        padding: 8px;
+        border-style: outset;
+        border-color: #FF9234;
+        border-width: 12px;
+        border-top-left-radius: 30%;
+        border-bottom-left-radius: 15%;
+        border-bottom-right-radius: 35%;
+}
+        .container p{
+            font-family: "Alkatra", system-ui;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1.2rem;
+        }
+        .ar{
+            display: -moz-grid-line;
+        }
+        .ar .card-body{
+            background-color: #E8EAD3;
+        }
+        
+        </style>
+</head>
+
+<body>
+    <div class="container">
+        <div><h1 class="mb-4" id="title"> TechWhirl : Asia's best Tech Blogging Platform </h1></div>
+        <p>Welcome to TechWhirl !! Dive into a world of innovation
+             and exploration as we unravel the latest trends, insights
+             , and breakthroughs in technology. From AI and cybersecurity 
+             to IoT and cloud computing, we're here to keep you in
+             formed and inspired. Join us on this journey of discovery
+             as we explore the forefront of technological advancement 
+             and its impact on our lives. Stay tuned for exciting updates
+              and engaging content that will expand your horizons and ignite
+               your passion for all things tech.</p>
+        <div class="ca"><a href="/articles/new" class="btn btn-success">Create post</a><div>
+            
+        <% articles.forEach(article=>{%>
+            <div class="ar">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%=article.title%>
+                    </h4>
+                    <div class="card-subtitle text-muted mb-2">
+                        <%=article.createdAt %>
+                    </div>
+                    <div class="card-text mb-2">
+                        <%=article.description%>
+                    </div>
+                    <a href="articles/<%=article.slug%>" class="btn btn-primary">Read More</a>
+                    <a href="articles/edit/<%= article.id%>" class="btn btn-info">Edit</a>
+                    <form action="/articles/<%=article.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+            </div>
+
+            <%})%>
+    </div>
+</body>
+
+</html>
